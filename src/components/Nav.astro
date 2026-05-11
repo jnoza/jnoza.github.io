@@ -1,0 +1,37 @@
+---
+const { pathname } = Astro.url;
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+const links = [
+  { href: "/", label: "resume" },
+  { href: "/blog", label: "blog" },
+  { href: "#", label: "github", external: true },
+  { href: "#", label: "linkedin", external: true },
+];
+---
+<header class="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[rgba(7,9,13,0.75)] backdrop-blur-md">
+  <nav class="mx-auto flex max-w-5xl items-center justify-between px-5 py-3.5 sm:px-8">
+    <a href="/" class="font-mono text-sm tracking-tight text-[var(--color-fg)] hover:text-[var(--color-accent)] transition-colors">
+      <span class="text-[var(--color-accent)]">~/</span>jn0xa
+    </a>
+    <ul class="flex items-center gap-1 font-mono text-xs sm:text-sm">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            target={l.external ? "_blank" : undefined}
+            rel={l.external ? "noopener noreferrer" : undefined}
+            class={`px-2.5 py-1.5 rounded transition-colors hover:text-[var(--color-accent)] hover:bg-[var(--color-accent-soft)] ${
+              !l.external && isActive(l.href)
+                ? "text-[var(--color-accent)]"
+                : "text-[var(--color-fg-muted)]"
+            }`}
+          >
+            <span class="text-[var(--color-fg-dim)]">./</span>{l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

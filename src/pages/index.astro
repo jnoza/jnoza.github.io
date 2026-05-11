@@ -1,0 +1,183 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TerminalWindow from "../components/TerminalWindow.astro";
+
+const competencies = [
+  "Red Team Strategy & Operations",
+  "Adversary Emulation & TTP Modeling",
+  "Threat-Informed Defense",
+  "Offensive Security Program Build-Out",
+  "Cloud & Identity Attack Paths",
+  "Detection Engineering Partnership",
+  "Purple Teaming & Tabletop Design",
+  "Executive & Board Risk Communication",
+];
+
+const experience = [
+  {
+    role: "Director of Offensive Security",
+    org: "Confidential / Fortune 500",
+    period: "2022 — Present",
+    bullets: [
+      "Founded and scaled the offensive security function from zero to a multi-disciplinary team covering red team, adversary emulation, and continuous testing.",
+      "Operationalized threat-intel-driven engagements aligned to MITRE ATT&CK, materially improving detection coverage across cloud and identity surfaces.",
+      "Partnered with engineering and detection teams to convert findings into durable controls rather than one-off reports.",
+    ],
+  },
+  {
+    role: "Principal Red Team Operator",
+    org: "Global Financial Services",
+    period: "2019 — 2022",
+    bullets: [
+      "Led full-scope, objective-based red team campaigns against high-value crown-jewel systems with executive sponsorship.",
+      "Designed assumed-breach scenarios that reshaped incident response playbooks and tabletop exercises across the firm.",
+    ],
+  },
+  {
+    role: "Senior Penetration Tester",
+    org: "Boutique Offensive Security Consultancy",
+    period: "2015 — 2019",
+    bullets: [
+      "Delivered network, web, cloud, and physical engagements for regulated industries.",
+      "Authored internal tooling and methodology that became the consultancy's standard delivery framework.",
+    ],
+  },
+];
+
+const education = [
+  { school: "B.S. Computer Science", detail: "Concentration in systems and security" },
+];
+
+const certifications = [
+  "OSCP — Offensive Security Certified Professional",
+  "OSEP — Offensive Security Experienced Penetration Tester",
+  "CRTO — Certified Red Team Operator",
+  "GXPN — GIAC Exploit Researcher and Advanced Penetration Tester",
+  "CISSP — Certified Information Systems Security Professional",
+];
+---
+<BaseLayout>
+  <!-- Hero -->
+  <section class="mx-auto max-w-5xl px-5 sm:px-8 pt-16 sm:pt-24 pb-12">
+    <div class="flex items-center gap-2 font-mono text-xs text-[var(--color-fg-dim)] mb-6">
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_8px_var(--color-accent)]"></span>
+      <span>session.active</span>
+      <span class="text-[var(--color-line)]">|</span>
+      <span>uplink ok</span>
+      <span class="text-[var(--color-line)]">|</span>
+      <span>auth: pubkey</span>
+    </div>
+
+    <h1 class="font-mono text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05]">
+      <span class="text-[var(--color-fg-muted)]">&gt;</span>
+      <span class="text-[var(--color-fg)]">jn0xa</span>
+      <span class="ml-1 inline-block h-9 sm:h-12 w-2 align-middle bg-[var(--color-accent)] animate-pulse"></span>
+    </h1>
+
+    <p class="mt-5 max-w-2xl text-lg sm:text-xl text-[var(--color-fg-muted)] leading-relaxed">
+      <span class="text-[var(--color-accent)]">Strategic Offensive Security Leader.</span>
+      Building red team and adversary emulation programs that move organizations
+      from "we ran a pentest" to "we know how we'd be breached, and we can prove
+      we'd catch it."
+    </p>
+
+    <div class="mt-8 flex flex-wrap gap-3 font-mono text-xs">
+      <span class="px-3 py-1.5 rounded border border-[var(--color-line)] bg-[var(--color-bg-soft)] text-[var(--color-fg-muted)]">
+        <span class="text-[var(--color-accent)]">role</span>: red_team_lead
+      </span>
+      <span class="px-3 py-1.5 rounded border border-[var(--color-line)] bg-[var(--color-bg-soft)] text-[var(--color-fg-muted)]">
+        <span class="text-[var(--color-accent)]">focus</span>: cloud, identity, ai
+      </span>
+      <span class="px-3 py-1.5 rounded border border-[var(--color-line)] bg-[var(--color-bg-soft)] text-[var(--color-fg-muted)]">
+        <span class="text-[var(--color-accent)]">posture</span>: threat-informed
+      </span>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="mx-auto max-w-5xl px-5 sm:px-8 py-8 space-y-10">
+    <TerminalWindow title="summary.txt" prompt="cat summary.txt">
+      <p class="text-[var(--color-fg)] leading-relaxed">
+        Offensive security leader with a decade of experience designing and
+        running adversary-emulation programs in regulated, high-stakes
+        environments. I build teams and methodologies that translate real
+        threat intelligence into engagements with measurable defensive impact,
+        and I work fluently across the boundary where executive risk
+        conversations meet shellcode-level tradecraft.
+      </p>
+    </TerminalWindow>
+
+    <!-- Core Competencies -->
+    <TerminalWindow title="competencies.sh" prompt="./list-competencies --json">
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 font-mono text-sm">
+        {competencies.map((c, i) => (
+          <li class="flex items-baseline gap-2.5 text-[var(--color-fg)]">
+            <span class="text-[var(--color-accent)] tabular-nums">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span class="text-[var(--color-fg-dim)]">&middot;</span>
+            <span>{c}</span>
+          </li>
+        ))}
+      </ul>
+    </TerminalWindow>
+
+    <!-- Experience -->
+    <TerminalWindow title="experience.log" prompt="tail -n 100 experience.log">
+      <ol class="space-y-8">
+        {experience.map((job) => (
+          <li class="relative pl-5 border-l border-[var(--color-line)]">
+            <span class="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_10px_var(--color-accent)]"></span>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+              <h3 class="font-mono text-base sm:text-lg text-[var(--color-fg)]">
+                {job.role}
+              </h3>
+              <span class="font-mono text-xs text-[var(--color-fg-dim)] tracking-wider">
+                {job.period}
+              </span>
+            </div>
+            <div class="font-mono text-xs text-[var(--color-accent-2)] mt-1">
+              {job.org}
+            </div>
+            <ul class="mt-3 space-y-1.5 text-[var(--color-fg-muted)] leading-relaxed">
+              {job.bullets.map((b) => (
+                <li class="flex gap-2">
+                  <span class="text-[var(--color-accent)] font-mono shrink-0">-</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+    </TerminalWindow>
+
+    <!-- Education + Certifications -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-2">
+        <TerminalWindow title="education.yml" prompt="cat education.yml">
+          <ul class="space-y-3 font-mono text-sm">
+            {education.map((e) => (
+              <li>
+                <div class="text-[var(--color-fg)]">{e.school}</div>
+                <div class="text-[var(--color-fg-dim)] text-xs mt-0.5">{e.detail}</div>
+              </li>
+            ))}
+          </ul>
+        </TerminalWindow>
+      </div>
+      <div class="lg:col-span-3">
+        <TerminalWindow title="certifications.txt" prompt="grep -i cert ./*.txt">
+          <ul class="space-y-2.5 font-mono text-sm">
+            {certifications.map((c) => (
+              <li class="flex gap-3 items-baseline">
+                <span class="text-[var(--color-accent)]">[x]</span>
+                <span class="text-[var(--color-fg)]">{c}</span>
+              </li>
+            ))}
+          </ul>
+        </TerminalWindow>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

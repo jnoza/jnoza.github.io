@@ -1,0 +1,26 @@
+kind = "web"
+previewPath = "/"
+title = "jn0xa // Portfolio"
+version = "1.0.0"
+id = "artifacts/portfolio"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21113
+
+[services.development]
+run = "pnpm --filter @workspace/portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/portfolio", "run", "build" ]
+publicDir = "artifacts/portfolio/dist"
+serve = "static"
+
+[services.env]
+PORT = "21113"

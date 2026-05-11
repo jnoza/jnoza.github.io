@@ -1,0 +1,22 @@
+{
+  "name": "@workspace/portfolio",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "astro": "^5.14.5",
+    "@tailwindcss/vite": "catalog:",
+    "tailwindcss": "catalog:",
+    "@tailwindcss/typography": "^0.5.18"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "~5.9.2"
+  }
+}

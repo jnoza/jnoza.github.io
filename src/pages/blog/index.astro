@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TerminalWindow from "../../components/TerminalWindow.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+<BaseLayout title="blog // jn0xa" description="Technical writing on offensive security, red team strategy, and applied research.">
+  <section class="mx-auto max-w-5xl px-5 sm:px-8 pt-16 pb-10">
+    <div class="font-mono text-xs text-[var(--color-fg-dim)] mb-3">
+      <span class="text-[var(--color-accent)]">~/</span>jn0xa<span class="text-[var(--color-fg-dim)]">/</span>blog
+    </div>
+    <h1 class="font-mono text-3xl sm:text-4xl font-semibold tracking-tight">
+      <span class="text-[var(--color-fg-muted)]">&gt;</span> field notes
+    </h1>
+    <p class="mt-3 max-w-2xl text-[var(--color-fg-muted)] leading-relaxed">
+      Long-form writing on offensive security strategy, adversary emulation,
+      and the slow work of building durable security programs.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-5 sm:px-8 pb-16">
+    <TerminalWindow title="ls -la ~/blog" prompt={`ls -la  ~/blog  | head -n ${posts.length + 1}`}>
+      {posts.length === 0 ? (
+        <p class="font-mono text-sm text-[var(--color-fg-dim)]">no posts yet.</p>
+      ) : (
+        <ul class="divide-y divide-[var(--color-line-soft)]">
+          {posts.map((p) => (
+            <li class="group">
+              <a
+                href={`/blog/${p.id}/`}
+                class="block py-5 transition-colors hover:bg-[rgba(34,211,238,0.03)] -mx-2 px-2 rounded"
+              >
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1.5">
+                  <h2 class="font-mono text-lg text-[var(--color-fg)] group-hover:text-[var(--color-accent)] transition-colors">
+                    {p.data.title}
+                  </h2>
+                  <time
+                    datetime={p.data.date.toISOString()}
+                    class="font-mono text-xs text-[var(--color-fg-dim)] tabular-nums tracking-wider shrink-0"
+                  >
+                    {fmt(p.data.date)}
+                  </time>
+                </div>
+                <p class="mt-2 text-[var(--color-fg-muted)] leading-relaxed">
+                  {p.data.excerpt}
+                </p>
+                <div class="mt-2.5 font-mono text-xs text-[var(--color-fg-dim)] group-hover:text-[var(--color-accent)] transition-colors">
+                  read &rarr;
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </TerminalWindow>
+  </section>
+</BaseLayout>
