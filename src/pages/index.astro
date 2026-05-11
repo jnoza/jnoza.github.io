@@ -108,7 +108,7 @@ const certifications = [
     </TerminalWindow>
 
     <!-- Core Competencies -->
-    <TerminalWindow title="competencies.sh" prompt="./list-competencies --json">
+    <TerminalWindow title="skills.json" prompt="cat skills.json | jq '.[].name'">
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 font-mono text-sm">
         {competencies.map((c, i) => (
           <li class="flex items-baseline gap-2.5 text-[var(--color-fg)]">
@@ -123,7 +123,7 @@ const certifications = [
     </TerminalWindow>
 
     <!-- Experience -->
-    <TerminalWindow title="experience.log" prompt="tail -n 100 experience.log">
+    <TerminalWindow title="experience.json" prompt="cat experience.json | jq '.[] | {role, org, period}'">
       <ol class="space-y-8">
         {experience.map((job) => (
           <li class="relative pl-5 border-l border-[var(--color-line)]">
@@ -167,7 +167,7 @@ const certifications = [
         </TerminalWindow>
       </div>
       <div class="lg:col-span-3">
-        <TerminalWindow title="certifications.txt" prompt="grep -i cert ./*.txt">
+        <TerminalWindow title="certs.json" prompt="cat certs.json | jq '.[] | select(.active == true) | .name'">
           <ul class="space-y-2.5 font-mono text-sm">
             {certifications.map((c) => (
               <li class="flex gap-3 items-baseline">
