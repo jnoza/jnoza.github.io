@@ -100,7 +100,7 @@ const certifications = [
   <!-- Summary -->
   <section class="mx-auto max-w-5xl px-5 sm:px-8 py-8 space-y-10">
     <TerminalWindow title="summary.txt" prompt="cat summary.txt">
-      <p class="text-[var(--color-fg)] leading-relaxed">
+      <p class="font-mono text-sm text-[var(--color-fg)] leading-relaxed">
         I manage offensive security teams and have spent the last decade doing
         penetration testing, red teaming, and building programs that actually
         move the needle on security posture. I work well at the intersection of
@@ -149,7 +149,7 @@ const certifications = [
             <div class="font-mono text-xs text-[var(--color-accent-2)] mt-1">
               {job.org}
             </div>
-            <ul class="mt-3 space-y-1.5 text-[var(--color-fg-muted)] leading-relaxed">
+            <ul class="mt-3 space-y-1.5 font-mono text-sm text-[var(--color-fg-muted)] leading-relaxed">
               {job.bullets.map((b) => (
                 <li class="flex gap-2">
                   <span class="text-[var(--color-accent)] font-mono shrink-0">-</span>
