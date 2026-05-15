@@ -72,18 +72,9 @@ const certifications = [
 <BaseLayout>
   <!-- Hero -->
   <section class="mx-auto max-w-5xl px-5 sm:px-8 pt-16 sm:pt-24 pb-12">
-    <div class="flex items-center gap-2 font-mono text-xs text-[var(--color-fg-dim)] mb-6">
-      <span class="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_8px_var(--color-accent)]"></span>
-      <span>session.active</span>
-      <span class="text-[var(--color-line)]">|</span>
-      <span>uplink ok</span>
-      <span class="text-[var(--color-line)]">|</span>
-      <span>auth: pubkey</span>
-    </div>
-
     <h1 class="font-mono text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05]">
       <span class="text-[var(--color-fg-muted)]">&gt;</span>
-      <span class="text-[var(--color-fg)]">jn0xa</span>
+      <span class="typewriter text-[var(--color-fg)]">jn0xa</span>
       <span class="ml-1 inline-block h-9 sm:h-12 w-2 align-middle bg-[var(--color-accent)] animate-pulse"></span>
     </h1>
 
@@ -203,3 +194,18 @@ const certifications = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  @keyframes typing {
+    from { width: 0ch; }
+    to   { width: 5ch; }
+  }
+
+  .typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 5ch;
+    animation: typing 0.9s steps(5, end) both;
+  }
+</style>
