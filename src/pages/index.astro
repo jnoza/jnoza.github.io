@@ -3,57 +3,70 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TerminalWindow from "../components/TerminalWindow.astro";
 
 const competencies = [
-  "Red Team Strategy & Operations",
-  "Adversary Emulation & TTP Modeling",
-  "Threat-Informed Defense",
-  "Offensive Security Program Build-Out",
-  "Cloud & Identity Attack Paths",
-  "Detection Engineering Partnership",
-  "Purple Teaming & Tabletop Design",
-  "Executive & Board Risk Communication",
+  { category: "Leadership", items: ["Executive Advisory (CISO-level)", "Strategic Budgeting & Roadmapping", "Talent Development & Retention", "Threat-Informed Defense Strategy", "SOC & Incident Response Integration"] },
+  { category: "Agentic AI & Automation", items: ["Agentic AI Vulnerability Discovery", "LLM Security & Exploitation", "Claude Code · Gemini-CLI · Shannon AI", "AI Risk Management", "Automation Scaling"] },
+  { category: "Offensive Security", items: ["Web Application & Cloud Penetration Testing", "AWS · GCP · Azure Infrastructure Testing", "FedRAMP 3PAO Assessments", "Internal / External Penetration Testing", "Microsoft Azure & Office 365 Security"] },
+  { category: "Tools & Languages", items: ["Bash · Python", "Burp Suite Pro · Tenable Nessus", "Rapid7 InsightVM · AppSpider Enterprise", "Bilingual: English & Spanish"] },
 ];
 
 const experience = [
   {
-    role: "Director of Offensive Security",
-    org: "Confidential / Fortune 500",
-    period: "2022 — Present",
+    role: "Manager, Offensive Security",
+    org: "Tevora Business Solutions, Inc — Fairfax, VA",
+    period: "07/2022 — Present",
     bullets: [
-      "Founded and scaled the offensive security function from zero to a multi-disciplinary team covering red team, adversary emulation, and continuous testing.",
-      "Operationalized threat-intel-driven engagements aligned to MITRE ATT&CK, materially improving detection coverage across cloud and identity surfaces.",
-      "Partnered with engineering and detection teams to convert findings into durable controls rather than one-off reports.",
+      "Lead a high-performing offensive security team of 5 direct reports and a rotating pipeline of 2–3 interns per cycle.",
+      "Serve as strategic advisor to external CISOs and senior security leadership, translating complex threat findings into prioritized remediation roadmaps tailored to each client's business risk.",
+      "2× President's Club Award winner for consistently exceeding department revenue goals, currently scaling past $9.2M annually.",
+      "Pioneer Agentic AI testing strategy using Claude Code, Gemini-CLI, and Shannon AI to scale vulnerability discovery — identifying complex logic flaws and zero-day vulnerabilities that bypass traditional automated analysis.",
+      "Technical lead for the organization's successful FedRAMP 3PAO certification; spearhead cloud penetration tests for Cloud Service Providers through rigorous compliance and threat modeling.",
+      "Foster a culture of continuous learning with exceptionally low turnover; mentor engineers to advanced certifications (e.g., OSWE) and expanded enterprise capabilities.",
     ],
   },
   {
-    role: "Principal Red Team Operator",
-    org: "Global Financial Services",
-    period: "2019 — 2022",
+    role: "Information Security Consultant",
+    org: "Independent",
+    period: "03/2020 — 07/2022",
     bullets: [
-      "Led full-scope, objective-based red team campaigns against high-value crown-jewel systems with executive sponsorship.",
-      "Designed assumed-breach scenarios that reshaped incident response playbooks and tabletop exercises across the firm.",
+      "Primary technical resource for penetration testing and vulnerability remediation, leading complex network, web application, and cloud infrastructure engagements.",
+      "Conducted comprehensive penetration tests across internal and external environments, cloud infrastructure, and PCI-DSS compliance frameworks.",
+      "Communicated findings and remediation strategies through detailed executive and technical reporting.",
     ],
   },
   {
-    role: "Senior Penetration Tester",
-    org: "Boutique Offensive Security Consultancy",
-    period: "2015 — 2019",
+    role: "Cyber Security Engineer",
+    org: "State Corporation Commission — Richmond, VA",
+    period: "01/2016 — 03/2020",
     bullets: [
-      "Delivered network, web, cloud, and physical engagements for regulated industries.",
-      "Authored internal tooling and methodology that became the consultancy's standard delivery framework.",
+      "Managed the Vulnerability Management program; revamped it to include vulnerability validation that prioritized known exploitable vulnerabilities using Rapid7 InsightVM and AppSpider Enterprise.",
+      "Security team lead on Cloud Migration Project — Office 365/ADFS migration including Exchange Online, Office Online, and SharePoint Online.",
+      "Created Hardening Standards using DoD STIGs for Windows and Windows Server environments.",
+      "Received advanced training in Red Team Penetration Testing and Cloud Exploitation at Black Hat 2017 & 2019.",
+    ],
+  },
+  {
+    role: "Systems Analyst II, Risk and Security",
+    org: "Virginia Premier Health Plan, Inc. — Richmond, VA",
+    period: "06/2013 — 01/2016",
+    bullets: [
+      "Implemented security controls to improve a nascent security and risk program; documented SOPs to standardize performance across processes.",
+      "Implemented a monthly server patch management process and a Security Awareness program including annual training, monthly newsletters, and quarterly contests.",
+      "Deployed a SIEM tool to centralize events and improve incident response time.",
     ],
   },
 ];
 
 const education = [
-  { school: "B.S. Computer Science", detail: "Concentration in systems and security" },
+  {
+    school: "B.S. Information Systems — Spring 2013",
+    detail: "Virginia Commonwealth University, Richmond, VA",
+  },
 ];
 
 const certifications = [
-  "OSCP — Offensive Security Certified Professional",
-  "OSEP — Offensive Security Experienced Penetration Tester",
-  "CRTO — Certified Red Team Operator",
-  "GXPN — GIAC Exploit Researcher and Advanced Penetration Tester",
-  "CISSP — Certified Information Systems Security Professional",
+  { name: "CISSP — Certified Information Systems Security Professional", validity: "2023 – 2028" },
+  { name: "GPEN — GIAC Penetration Tester", validity: "2019 – 2027" },
+  { name: "OSCP — Offensive Security Certified Professional", validity: "2019" },
 ];
 ---
 <BaseLayout>
@@ -76,17 +89,17 @@ const certifications = [
 
     <p class="mt-5 max-w-2xl text-lg sm:text-xl text-[var(--color-fg-muted)] leading-relaxed">
       <span class="text-[var(--color-accent)]">Strategic Offensive Security Leader.</span>
-      Building red team and adversary emulation programs that move organizations
-      from "we ran a pentest" to "we know how we'd be breached, and we can prove
-      we'd catch it."
+      Managing high-performing penetration testing teams and driving operational
+      excellence — leveraging advanced adversary tradecraft and Agentic AI to
+      proactively identify and mitigate complex enterprise threats.
     </p>
 
     <div class="mt-8 flex flex-wrap gap-3 font-mono text-xs">
       <span class="px-3 py-1.5 rounded border border-[var(--color-line)] bg-[var(--color-bg-soft)] text-[var(--color-fg-muted)]">
-        <span class="text-[var(--color-accent)]">role</span>: red_team_lead
+        <span class="text-[var(--color-accent)]">location</span>: Alexandria, VA
       </span>
       <span class="px-3 py-1.5 rounded border border-[var(--color-line)] bg-[var(--color-bg-soft)] text-[var(--color-fg-muted)]">
-        <span class="text-[var(--color-accent)]">focus</span>: cloud, identity, ai
+        <span class="text-[var(--color-accent)]">focus</span>: agentic_ai, cloud, FedRAMP
       </span>
       <span class="px-3 py-1.5 rounded border border-[var(--color-line)] bg-[var(--color-bg-soft)] text-[var(--color-fg-muted)]">
         <span class="text-[var(--color-accent)]">posture</span>: threat-informed
@@ -98,28 +111,36 @@ const certifications = [
   <section class="mx-auto max-w-5xl px-5 sm:px-8 py-8 space-y-10">
     <TerminalWindow title="summary.txt" prompt="cat summary.txt">
       <p class="text-[var(--color-fg)] leading-relaxed">
-        Offensive security leader with a decade of experience designing and
-        running adversary-emulation programs in regulated, high-stakes
-        environments. I build teams and methodologies that translate real
-        threat intelligence into engagements with measurable defensive impact,
-        and I work fluently across the boundary where executive risk
-        conversations meet shellcode-level tradecraft.
+        Strategic Offensive Security Leader with a proven track record of
+        managing high-performing penetration testing teams and driving
+        operational excellence. Adept at leveraging advanced adversary
+        tradecraft and Agentic AI capabilities to proactively identify and
+        mitigate complex enterprise threats. Recognized for strategic alignment,
+        maintaining exceptionally low team turnover, and translating technical
+        threat insights into actionable, business-relevant strategies for
+        executive stakeholders.
       </p>
     </TerminalWindow>
 
     <!-- Core Competencies -->
     <TerminalWindow title="skills.json" prompt="cat skills.json | jq '.[].name'">
-      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 font-mono text-sm">
-        {competencies.map((c, i) => (
-          <li class="flex items-baseline gap-2.5 text-[var(--color-fg)]">
-            <span class="text-[var(--color-accent)] tabular-nums">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <span class="text-[var(--color-fg-dim)]">&middot;</span>
-            <span>{c}</span>
-          </li>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 font-mono text-sm">
+        {competencies.map((group) => (
+          <div>
+            <div class="text-[var(--color-accent-2)] text-xs uppercase tracking-widest mb-2.5">
+              {group.category}
+            </div>
+            <ul class="space-y-1.5">
+              {group.items.map((item) => (
+                <li class="flex gap-2 items-baseline text-[var(--color-fg)]">
+                  <span class="text-[var(--color-accent)] shrink-0">›</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
     </TerminalWindow>
 
     <!-- Experience -->
@@ -168,11 +189,14 @@ const certifications = [
       </div>
       <div class="lg:col-span-3">
         <TerminalWindow title="certs.json" prompt="cat certs.json | jq '.[] | select(.active == true) | .name'">
-          <ul class="space-y-2.5 font-mono text-sm">
+          <ul class="space-y-3.5 font-mono text-sm">
             {certifications.map((c) => (
-              <li class="flex gap-3 items-baseline">
-                <span class="text-[var(--color-accent)]">[x]</span>
-                <span class="text-[var(--color-fg)]">{c}</span>
+              <li class="flex gap-3 items-start">
+                <span class="text-[var(--color-accent)] shrink-0 mt-0.5">[x]</span>
+                <div>
+                  <div class="text-[var(--color-fg)]">{c.name}</div>
+                  <div class="text-[var(--color-fg-dim)] text-xs mt-0.5">{c.validity}</div>
+                </div>
               </li>
             ))}
           </ul>
