@@ -12,61 +12,61 @@ const competencies = [
 const experience = [
   {
     role: "Manager, Offensive Security",
-    org: "Tevora Business Solutions, Inc — Fairfax, VA",
-    period: "07/2022 — Present",
+    org: "Tevora Business Solutions, Inc, Fairfax, VA",
+    period: "07/2022 to Present",
     bullets: [
-      "Lead a high-performing offensive security team of 5 direct reports and a rotating pipeline of 2–3 interns per cycle.",
-      "Serve as strategic advisor to external CISOs and senior security leadership, translating complex threat findings into prioritized remediation roadmaps tailored to each client's business risk.",
-      "2× President's Club Award winner for consistently exceeding department revenue goals, currently scaling past $9.2M annually.",
-      "Pioneer Agentic AI testing strategy using Claude Code, Gemini-CLI, and Shannon AI to scale vulnerability discovery — identifying complex logic flaws and zero-day vulnerabilities that bypass traditional automated analysis.",
-      "Technical lead for the organization's successful FedRAMP 3PAO certification; spearhead cloud penetration tests for Cloud Service Providers through rigorous compliance and threat modeling.",
-      "Foster a culture of continuous learning with exceptionally low turnover; mentor engineers to advanced certifications (e.g., OSWE) and expanded enterprise capabilities.",
+      "Manage a team of 5 and a rotating bench of 2-3 interns per cycle, handling everything from scoping and delivery to career development.",
+      "Act as a direct advisor to client CISOs and security leadership, turning complex findings into clear remediation roadmaps that fit their risk tolerance and business context.",
+      "2x President's Club Award winner for consistently exceeding revenue goals; team is currently past $9.2M annually.",
+      "Built out an Agentic AI testing practice using Claude Code, Gemini-CLI, and Shannon AI that has caught logic flaws and zero-days that both manual review and traditional scanners missed.",
+      "Served as technical lead for the firm's FedRAMP 3PAO certification and ran cloud penetration tests for CSPs working toward FedRAMP Authorization.",
+      "Kept team turnover near zero by building individual development paths; several engineers have gone on to earn OSWE and other advanced certifications.",
     ],
   },
   {
     role: "Information Security Consultant",
-    org: "Tevora Business Solutions, Inc — Fairfax, VA",
-    period: "03/2020 — 07/2022",
+    org: "Tevora Business Solutions, Inc, Fairfax, VA",
+    period: "03/2020 to 07/2022",
     bullets: [
-      "Primary technical resource for penetration testing and vulnerability remediation, leading complex network, web application, and cloud infrastructure engagements.",
-      "Conducted comprehensive penetration tests across internal and external environments, cloud infrastructure, and PCI-DSS compliance frameworks.",
-      "Communicated findings and remediation strategies through detailed executive and technical reporting.",
+      "Ran penetration tests and vulnerability assessments across network, web application, and cloud environments for clients in regulated industries.",
+      "Covered internal and external testing as well as PCI-DSS scoped assessments.",
+      "Wrote executive and technical reports that gave clients a clear picture of risk and a concrete path to fix it.",
     ],
   },
   {
     role: "Cyber Security Engineer",
-    org: "State Corporation Commission — Richmond, VA",
-    period: "01/2016 — 03/2020",
+    org: "State Corporation Commission, Richmond, VA",
+    period: "01/2016 to 03/2020",
     bullets: [
-      "Managed the Vulnerability Management program; revamped it to include vulnerability validation that prioritized known exploitable vulnerabilities using Rapid7 InsightVM and AppSpider Enterprise.",
-      "Security team lead on Cloud Migration Project — Office 365/ADFS migration including Exchange Online, Office Online, and SharePoint Online.",
-      "Created Hardening Standards using DoD STIGs for Windows and Windows Server environments.",
-      "Received advanced training in Red Team Penetration Testing and Cloud Exploitation at Black Hat 2017 & 2019.",
+      "Rebuilt the Vulnerability Management program to focus on validated, known-exploitable findings first, using Rapid7 InsightVM and AppSpider Enterprise to track and report risk to leadership.",
+      "Led security for the Office 365/ADFS cloud migration, covering Exchange Online, Office Online, and SharePoint Online.",
+      "Wrote Windows and Windows Server hardening standards based on DoD STIGs.",
+      "Attended Black Hat 2017 and 2019 for hands-on training in red team techniques and cloud exploitation.",
     ],
   },
   {
     role: "Systems Analyst II, Risk and Security",
-    org: "Virginia Premier Health Plan, Inc. — Richmond, VA",
-    period: "06/2013 — 01/2016",
+    org: "Virginia Premier Health Plan, Inc., Richmond, VA",
+    period: "06/2013 to 01/2016",
     bullets: [
-      "Implemented security controls to improve a nascent security and risk program; documented SOPs to standardize performance across processes.",
-      "Implemented a monthly server patch management process and a Security Awareness program including annual training, monthly newsletters, and quarterly contests.",
-      "Deployed a SIEM tool to centralize events and improve incident response time.",
+      "Helped stand up a security and risk program that was early-stage, writing SOPs and putting basic controls in place.",
+      "Built a monthly patch management process for servers and launched a Security Awareness program with annual training, monthly newsletters, and quarterly contests.",
+      "Deployed a SIEM to consolidate event logging and cut incident response time.",
     ],
   },
 ];
 
 const education = [
   {
-    school: "B.S. Information Systems — Spring 2013",
+    school: "B.S. Information Systems, Spring 2013",
     detail: "Virginia Commonwealth University, Richmond, VA",
   },
 ];
 
 const certifications = [
-  { name: "CISSP — Certified Information Systems Security Professional", validity: "2023 – 2028" },
-  { name: "GPEN — GIAC Penetration Tester", validity: "2019 – 2027" },
-  { name: "OSCP — Offensive Security Certified Professional", validity: "2019" },
+  { name: "CISSP: Certified Information Systems Security Professional", validity: "2023 to 2028" },
+  { name: "GPEN: GIAC Penetration Tester", validity: "2019 to 2027" },
+  { name: "OSCP: Offensive Security Certified Professional", validity: "2019" },
 ];
 ---
 <BaseLayout>
@@ -89,9 +89,8 @@ const certifications = [
 
     <p class="mt-5 max-w-2xl text-lg sm:text-xl text-[var(--color-fg-muted)] leading-relaxed">
       <span class="text-[var(--color-accent)]">Strategic Offensive Security Leader.</span>
-      Managing high-performing penetration testing teams and driving operational
-      excellence — leveraging advanced adversary tradecraft and Agentic AI to
-      proactively identify and mitigate complex enterprise threats.
+      I run offensive security teams and build programs that use real adversary
+      tradecraft and Agentic AI to find what other tools miss.
     </p>
 
     <div class="mt-8 flex flex-wrap gap-3 font-mono text-xs">
@@ -111,14 +110,13 @@ const certifications = [
   <section class="mx-auto max-w-5xl px-5 sm:px-8 py-8 space-y-10">
     <TerminalWindow title="summary.txt" prompt="cat summary.txt">
       <p class="text-[var(--color-fg)] leading-relaxed">
-        Strategic Offensive Security Leader with a proven track record of
-        managing high-performing penetration testing teams and driving
-        operational excellence. Adept at leveraging advanced adversary
-        tradecraft and Agentic AI capabilities to proactively identify and
-        mitigate complex enterprise threats. Recognized for strategic alignment,
-        maintaining exceptionally low team turnover, and translating technical
-        threat insights into actionable, business-relevant strategies for
-        executive stakeholders.
+        I manage offensive security teams and have spent the last decade doing
+        penetration testing, red teaming, and building programs that actually
+        move the needle on security posture. I work well at the intersection of
+        hands-on technical work and executive communication, and I keep teams
+        intact by investing in the people on them. Right now I'm focused on
+        figuring out where Agentic AI fits into offensive work and where it
+        doesn't.
       </p>
     </TerminalWindow>
 
