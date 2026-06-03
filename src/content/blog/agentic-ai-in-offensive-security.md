@@ -83,49 +83,31 @@ coming back to looks like this:
         <path d="M0,0 L10,5 L0,10 z" fill="var(--color-accent)"/>
       </marker>
     </defs>
-
-    <!-- feedback loop (drawn first, sits behind boxes) -->
     <path d="M185,505 L110,505 L110,137 L185,137" fill="none" stroke="var(--color-accent)" stroke-width="1.5" marker-end="url(#ah-cy)"/>
     <text x="103" y="321" transform="rotate(-90 103 321)" text-anchor="middle" fill="var(--color-accent)" font-size="11">result &#8594; context</text>
-
-    <!-- A: goal + policy -->
     <rect x="185" y="20" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-accent-2)" stroke-width="1.5"/>
     <text x="300" y="52" text-anchor="middle" fill="var(--color-fg)" font-size="15">goal + policy</text>
     <line x1="300" y1="74" x2="300" y2="108" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
-
-    <!-- B: planner -->
     <rect x="185" y="110" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
     <text x="300" y="142" text-anchor="middle" fill="var(--color-fg)" font-size="15">planner model</text>
     <line x1="300" y1="164" x2="300" y2="188" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
-
-    <!-- diamond: done? -->
     <polygon points="300,190 358,224 300,258 242,224" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
     <text x="300" y="229" text-anchor="middle" fill="var(--color-fg)" font-size="14">plan.done?</text>
-
-    <!-- yes -> summary -->
     <line x1="358" y1="224" x2="462" y2="224" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
     <text x="404" y="214" text-anchor="middle" fill="var(--color-fg-muted)" font-size="12">yes</text>
     <rect x="466" y="197" width="134" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-accent-2)" stroke-width="1.5"/>
     <text x="533" y="229" text-anchor="middle" fill="var(--color-fg)" font-size="15">summary</text>
-
-    <!-- no -> approval gate -->
     <line x1="300" y1="258" x2="300" y2="294" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
     <text x="312" y="282" text-anchor="start" fill="var(--color-fg-muted)" font-size="12">no</text>
-
-    <!-- C: approval gate -->
     <rect x="185" y="296" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-accent)" stroke-width="1.5"/>
     <text x="300" y="318" text-anchor="middle" fill="var(--color-fg)" font-size="15">approval gate</text>
     <text x="300" y="336" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">requires_approval</text>
     <line x1="300" y1="350" x2="300" y2="384" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
     <text x="312" y="372" text-anchor="start" fill="var(--color-fg-muted)" font-size="12">approved</text>
-
-    <!-- D: tool surface -->
     <rect x="185" y="386" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
     <text x="300" y="408" text-anchor="middle" fill="var(--color-fg)" font-size="15">tool surface</text>
     <text x="300" y="426" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">shell &#183; browser &#183; exploit &#183; api</text>
     <line x1="300" y1="440" x2="300" y2="474" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
-
-    <!-- E: audit log -->
     <rect x="185" y="476" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
     <text x="300" y="498" text-anchor="middle" fill="var(--color-fg)" font-size="15">audit log</text>
     <text x="300" y="516" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">append-only</text>
