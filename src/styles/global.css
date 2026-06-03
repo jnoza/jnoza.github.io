@@ -27,6 +27,29 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Light theme overrides */
+html.light {
+  --color-bg: #f5f7fa;
+  --color-bg-elev: #ffffff;
+  --color-bg-soft: #edf0f5;
+  --color-line: #cfd7e6;
+  --color-line-soft: #dde4f0;
+  --color-fg: #111827;
+  --color-fg-muted: #374151;
+  --color-fg-dim: #6b7280;
+  --color-accent: #0369a1;
+  --color-accent-2: #6d28d9;
+  --color-accent-soft: rgba(3, 105, 161, 0.1);
+}
+html.light .glow-cyan,
+html.light .glow-purple  { text-shadow: none; }
+html.light .terminal-cursor { box-shadow: none !important; }
+html.light .prose pre    { background: #f0f2f7 !important; }
+html.light ::selection   { background: rgba(3, 105, 161, 0.25); }
+
+/* Theme toggle label via CSS — no JS flicker */
+#theme-toggle::after       { content: '[light]'; }
+html.light #theme-toggle::after { content: '[dark]'; }
 
 ::selection {
   background: rgba(34, 211, 238, 0.3);

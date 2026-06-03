@@ -32,6 +32,13 @@ const links = [
           </a>
         </li>
       ))}
+      <li>
+        <button
+          id="theme-toggle"
+          onclick="(function(){var l=document.documentElement.classList.toggle('light');localStorage.setItem('theme',l?'light':'dark');})()"
+          class="px-2.5 py-1.5 rounded transition-colors text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent-soft)] cursor-pointer"
+        ></button>
+      </li>
     </ul>
   </nav>
 </header>
