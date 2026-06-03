@@ -34,6 +34,8 @@ html, body {
 }
 
 .font-mono { font-family: var(--font-mono); }
+.glow-cyan   { text-shadow: 0 0 7px rgba(34, 211, 238, 0.55); }
+.glow-purple { text-shadow: 0 0 7px rgba(168, 85, 247, 0.55); }
 
 a { color: inherit; }
 

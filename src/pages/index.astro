@@ -79,12 +79,12 @@ const certifications = [
     </h1>
 
     <p class="mt-5 max-w-2xl text-lg sm:text-xl text-[var(--color-fg-muted)] leading-relaxed">
-      <span class="text-[var(--color-accent)]">Strategic Offensive Security Leader.</span>
+      <span class="text-[var(--color-accent)] glow-cyan">Strategic Offensive Security Leader.</span>
       I run offensive security teams and build programs that use real adversary
       tradecraft and Agentic AI to find what other tools miss.
     </p>
 
-    <div class="mt-8 flex flex-wrap gap-3 font-mono text-xs">
+    <div class="mt-8 flex flex-wrap gap-3 font-mono text-sm">
       <span class="px-3 py-1.5 rounded border border-[var(--color-line)] bg-[var(--color-bg-soft)] text-[var(--color-fg-muted)]">
         <span class="text-[var(--color-accent)]">location</span>: Alexandria, VA
       </span>
@@ -100,7 +100,7 @@ const certifications = [
   <!-- Summary -->
   <section class="mx-auto max-w-5xl px-5 sm:px-8 py-8 space-y-10">
     <TerminalWindow title="summary.txt" prompt="cat summary.txt">
-      <p class="font-mono text-sm text-[var(--color-fg)] leading-relaxed">
+      <p class="font-mono text-base text-[var(--color-fg)] leading-relaxed">
         I've spent the last decade doing penetration testing, red teaming, and
         building offensive security programs from the ground up. These days I
         lead teams and own the strategy, but I stay close to the technical work
@@ -114,10 +114,10 @@ const certifications = [
 
     <!-- Core Competencies -->
     <TerminalWindow title="skills.json" prompt="cat skills.json | jq '.[].name'">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 font-mono text-sm">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 font-mono text-base">
         {competencies.map((group) => (
           <div>
-            <div class="text-[var(--color-accent-2)] text-xs uppercase tracking-widest mb-2.5">
+            <div class="text-[var(--color-accent-2)] glow-purple text-sm uppercase tracking-widest mb-2.5">
               {group.category}
             </div>
             <ul class="space-y-1.5">
@@ -140,17 +140,17 @@ const certifications = [
           <li class="relative pl-5 border-l border-[var(--color-line)]">
             <span class="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]"></span>
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-              <h3 class="font-mono text-base sm:text-lg text-[var(--color-fg)]">
+              <h3 class="font-mono text-lg sm:text-xl text-[var(--color-fg)]">
                 {job.role}
               </h3>
-              <span class="font-mono text-xs text-[var(--color-fg-dim)] tracking-wider">
+              <span class="font-mono text-sm text-[var(--color-fg-dim)] tracking-wider">
                 {job.period}
               </span>
             </div>
-            <div class="font-mono text-xs text-[var(--color-accent-2)] mt-1">
+            <div class="font-mono text-sm text-[var(--color-accent-2)] mt-1">
               {job.org}
             </div>
-            <ul class="mt-3 space-y-1.5 font-mono text-sm text-[var(--color-fg-muted)] leading-relaxed">
+            <ul class="mt-3 space-y-1.5 font-mono text-base text-[var(--color-fg-muted)] leading-relaxed">
               {job.bullets.map((b) => (
                 <li class="flex gap-2">
                   <span class="text-[var(--color-accent)] font-mono shrink-0">-</span>
@@ -167,11 +167,11 @@ const certifications = [
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
       <div class="lg:col-span-2">
         <TerminalWindow title="education.yml" prompt="cat education.yml">
-          <ul class="space-y-3 font-mono text-sm">
+          <ul class="space-y-3 font-mono text-base">
             {education.map((e) => (
               <li>
                 <div class="text-[var(--color-fg)]">{e.school}</div>
-                <div class="text-[var(--color-fg-dim)] text-xs mt-0.5">{e.detail}</div>
+                <div class="text-[var(--color-fg-dim)] text-sm mt-0.5">{e.detail}</div>
               </li>
             ))}
           </ul>
@@ -179,13 +179,13 @@ const certifications = [
       </div>
       <div class="lg:col-span-3">
         <TerminalWindow title="certs.json" prompt="cat certs.json | jq '.[] | select(.active == true) | .name'">
-          <ul class="space-y-3.5 font-mono text-sm">
+          <ul class="space-y-3.5 font-mono text-base">
             {certifications.map((c) => (
               <li class="flex gap-3 items-start">
                 <span class="text-[var(--color-accent)] shrink-0 mt-0.5">[x]</span>
                 <div>
                   <div class="text-[var(--color-fg)]">{c.name}</div>
-                  <div class="text-[var(--color-fg-dim)] text-xs mt-0.5">{c.validity}</div>
+                  <div class="text-[var(--color-fg-dim)] text-sm mt-0.5">{c.validity}</div>
                 </div>
               </li>
             ))}
