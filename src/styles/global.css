@@ -47,9 +47,19 @@ html.light .terminal-cursor { box-shadow: none !important; }
 html.light .prose pre    { background: #f0f2f7 !important; }
 html.light ::selection   { background: rgba(3, 105, 161, 0.25); }
 
-/* Theme toggle label via CSS — no JS flicker */
-#theme-toggle::after       { content: '[light]'; }
-html.light #theme-toggle::after { content: '[dark]'; }
+/* Theme toggle icon switching — no JS flicker */
+.sun-icon  { display: block; }
+.moon-icon { display: none; }
+html.light .sun-icon  { display: none; }
+html.light .moon-icon { display: block; }
+
+/* Hover animation */
+.theme-toggle-btn .sun-icon,
+.theme-toggle-btn .moon-icon {
+  transition: transform 0.35s ease;
+}
+.theme-toggle-btn:hover .sun-icon  { transform: rotate(40deg) scale(1.15); }
+.theme-toggle-btn:hover .moon-icon { transform: rotate(-12deg) scale(1.15); }
 
 ::selection {
   background: rgba(34, 211, 238, 0.3);
