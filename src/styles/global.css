@@ -2,8 +2,8 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: "Consolas", "Cascadia Code", "SF Mono", ui-monospace, "Courier New", monospace;
+  --font-mono: "Consolas", "Cascadia Code", "SF Mono", ui-monospace, "Courier New", monospace;
 
   --color-bg: #07090d;
   --color-bg-elev: #0c1018;
@@ -27,12 +27,6 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background-image:
-    radial-gradient(1200px 600px at 80% -10%, rgba(168, 85, 247, 0.08), transparent 60%),
-    radial-gradient(900px 500px at -10% 10%, rgba(34, 211, 238, 0.07), transparent 55%);
-  background-attachment: fixed;
-}
 
 ::selection {
   background: rgba(34, 211, 238, 0.3);
