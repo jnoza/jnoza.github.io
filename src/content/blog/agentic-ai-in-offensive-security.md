@@ -5,119 +5,149 @@ excerpt: "Autonomous LLM agents are quietly reshaping the operator's toolkit. A 
 tags: ["red-team", "ai", "tradecraft"]
 ---
 
-There is a particular kind of hype cycle that the security industry runs on,
-and "agentic AI" is squarely in the middle of one right now. Vendors will tell
-you their agent can replace a junior operator. Twitter threads will tell you
-your job is at risk. Conference talks will demo a flashy end-to-end pwn that
-quietly skips over the parts where a human typed for an hour.
+Every few years the security industry finds a new thing to be breathless about,
+and right now it's agentic AI. The pitch writes itself: an agent that replaces
+your junior operator, runs the whole kill chain while you sleep, turns a
+five-day engagement into an afternoon. I've sat through enough of these demos to
+know where the camera cuts away. It's usually right around the part where
+someone spent an hour hand-feeding the model context.
 
-This post is the version I would give a senior operator over coffee: what
-agentic systems actually do well in offensive engagements today, where they
-fall apart, and the small set of internal tools I would build first if I were
-standing up an "AI-augmented red team" function in 2026.
+I run a red team, and we use this stuff. So rather than another think piece,
+here's the conversation I'd actually have with you over coffee: what these
+systems are good at today, where they fall on their face, and the handful of
+tools I'd build first if I were standing up an AI-augmented team from scratch.
 
-## What "agentic" actually means here
+## What "agentic" actually means
 
-Strip away the marketing and an agent is just a loop:
+"Agent" is carrying a lot of weight as a word. Strip off the branding and it's a
+loop:
 
-1. A planner LLM decides the next step.
-2. The step is dispatched to a tool — a shell, a browser, an exploit framework, an internal API.
-3. The result is fed back into the model.
-4. Repeat until a stop condition.
+1. A model picks the next step.
+2. The step runs against some tool: a shell, a browser, an exploit framework, an internal API.
+3. The output goes back into the model.
+4. Repeat until it decides it's done.
 
-That is it. The interesting questions are all in the seams: what tools you
-expose, how much state you let the model carry, how you constrain the action
-space, and what you do when the model confidently hallucinates a CVE that
-does not exist.
+That's the whole trick. Everything interesting lives in the parts nobody demos:
+which tools you hand it, how much state it carries between steps, how tightly you
+fence in what it's allowed to do, and what happens when it tells you, with total
+confidence, that CVE-2024-99999 is the way in. It isn't. It doesn't exist.
 
-## Where agents are genuinely useful right now
+## Where it actually earns its keep
 
-A short, honest list.
+I'll be specific, because the generic version of this list is useless.
 
-- **Recon enrichment.** Given a domain or org, an agent is excellent at fanning
-  out across passive sources, deduping noise, and producing a structured
-  attack-surface summary that a human would spend an afternoon on.
-- **Log and artifact triage.** Pointing an agent at a directory of post-ex
-  output (Bloodhound dumps, beacon logs, screenshots) and asking "what is
-  interesting and why" produces a surprisingly good first pass.
-- **Report drafting.** Not the executive summary &mdash; that still needs a
-  human &mdash; but the per-finding prose, remediation notes, and severity
-  rationale. This alone has bought my team back real hours.
-- **Tool wrappers for junior operators.** A natural-language front-end over
-  internal tooling shortens onboarding without watering down the underlying
-  tradecraft.
+- **Recon enrichment.** Hand it a domain or an org and it'll fan out across
+  passive sources, knock down the duplicates, and give back a structured
+  attack-surface summary. That's an afternoon of analyst time back in your
+  pocket.
+- **Triage of post-ex junk.** Point it at a pile of BloodHound output, beacon
+  logs, and screenshots, then ask what's worth a second look. The first pass is
+  genuinely good. It won't replace an operator's eye, but it's a real head start.
+- **Report drafting.** Not the exec summary, since leadership can smell generated
+  prose and so can I, but the per-finding write-ups, the remediation notes, the
+  severity rationale. This one alone has handed my team back real hours every
+  engagement.
+- **A friendlier front door for junior operators.** A natural-language wrapper
+  over internal tooling cuts onboarding time without dumbing down what's
+  underneath.
 
-## Where they break, every time
+## Where it breaks, every single time
 
-The failure modes are not subtle if you have actually run agents in
-adversarial environments.
+If you've run agents against something that fights back, none of this is subtle.
 
-- **Fabricated tradecraft.** Models will cheerfully invent flag combinations,
-  registry keys, and API endpoints that do not exist. In offensive work, a
-  confidently wrong command often burns the engagement.
-- **No theory of detection.** An agent has no intuition for what a SOC will
-  see. It will pick the loudest possible path because it worked in training
-  data.
-- **Long-horizon planning.** Multi-day, objective-based campaigns require
-  patience, restraint, and the willingness to do nothing for hours. Agents
-  optimize for visible progress and burn down operational security in the
-  process.
+- **It makes things up.** Flags, registry keys, API endpoints, entire
+  exploitation paths, all stated with the same confidence as the things that are
+  real. In offensive work a confidently wrong command doesn't just waste time. It
+  can torch the engagement.
+- **It has no feel for detection.** The model has no idea what the SOC sees. Left
+  alone it reaches for the loudest path on the board, because that's what showed
+  up most in its training data.
+- **It can't sit still.** Objective-based campaigns that play out over days need
+  patience and restraint, the discipline to do nothing for hours. Agents are
+  wired to show progress, and they'll spend your operational security to do it.
 
-## A minimal, defensible blueprint
+## A minimal blueprint I'd actually defend
 
-If I were starting today, I would not buy the autonomous-pentester product.
-I would build a small set of focused, auditable agents around the boring
-parts of the workflow. Something like this, in pseudocode:
+If I were starting today I wouldn't touch the autonomous-pentester-in-a-box
+products. I'd build a few small, focused, auditable agents around the boring
+edges of the workflow and leave the judgment calls to people. The shape I keep
+coming back to looks like this:
 
-```python
-# A deliberately minimal agent loop.
-# No autonomous exploitation. Every tool call is logged
-# and gated by a policy the team can read.
+<figure class="not-prose my-10">
+  <svg viewBox="0 0 620 560" role="img" aria-label="A minimal agent loop: a goal and a policy feed a planner model. If the plan is not done, each step must clear an approval gate before the tool surface runs it. Every result is written to an append-only audit log that feeds back into the planner." style="width:100%;height:auto;font-family:'Consolas','Cascadia Code','SF Mono',ui-monospace,monospace;">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--color-fg-dim)"/>
+      </marker>
+      <marker id="ah-cy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--color-accent)"/>
+      </marker>
+    </defs>
 
-from dataclasses import dataclass
-from typing import Callable
+    <!-- feedback loop (drawn first, sits behind boxes) -->
+    <path d="M185,505 L110,505 L110,137 L185,137" fill="none" stroke="var(--color-accent)" stroke-width="1.5" marker-end="url(#ah-cy)"/>
+    <text x="103" y="321" transform="rotate(-90 103 321)" text-anchor="middle" fill="var(--color-accent)" font-size="11">result &#8594; context</text>
 
-@dataclass
-class Tool:
-    name: str
-    run: Callable[[str], str]
-    requires_approval: bool = False
+    <!-- A: goal + policy -->
+    <rect x="185" y="20" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-accent-2)" stroke-width="1.5"/>
+    <text x="300" y="52" text-anchor="middle" fill="var(--color-fg)" font-size="15">goal + policy</text>
+    <line x1="300" y1="74" x2="300" y2="108" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
 
-def run_agent(goal: str, tools: list[Tool], policy, llm, max_steps: int = 12):
-    history = [{"role": "system", "content": policy}]
-    history.append({"role": "user", "content": goal})
+    <!-- B: planner -->
+    <rect x="185" y="110" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
+    <text x="300" y="142" text-anchor="middle" fill="var(--color-fg)" font-size="15">planner model</text>
+    <line x1="300" y1="164" x2="300" y2="188" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
 
-    for step in range(max_steps):
-        plan = llm.plan(history)
-        if plan.done:
-            return plan.summary
+    <!-- diamond: done? -->
+    <polygon points="300,190 358,224 300,258 242,224" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
+    <text x="300" y="229" text-anchor="middle" fill="var(--color-fg)" font-size="14">plan.done?</text>
 
-        tool = next((t for t in tools if t.name == plan.tool), None)
-        if tool is None:
-            history.append({"role": "system", "content": f"unknown tool: {plan.tool}"})
-            continue
+    <!-- yes -> summary -->
+    <line x1="358" y1="224" x2="462" y2="224" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
+    <text x="404" y="214" text-anchor="middle" fill="var(--color-fg-muted)" font-size="12">yes</text>
+    <rect x="466" y="197" width="134" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-accent-2)" stroke-width="1.5"/>
+    <text x="533" y="229" text-anchor="middle" fill="var(--color-fg)" font-size="15">summary</text>
 
-        if tool.requires_approval and not human_approves(plan):
-            history.append({"role": "system", "content": "operator declined step"})
-            continue
+    <!-- no -> approval gate -->
+    <line x1="300" y1="258" x2="300" y2="294" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
+    <text x="312" y="282" text-anchor="start" fill="var(--color-fg-muted)" font-size="12">no</text>
 
-        result = tool.run(plan.args)
-        history.append({"role": "tool", "name": tool.name, "content": result})
+    <!-- C: approval gate -->
+    <rect x="185" y="296" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-accent)" stroke-width="1.5"/>
+    <text x="300" y="318" text-anchor="middle" fill="var(--color-fg)" font-size="15">approval gate</text>
+    <text x="300" y="336" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">requires_approval</text>
+    <line x1="300" y1="350" x2="300" y2="384" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
+    <text x="312" y="372" text-anchor="start" fill="var(--color-fg-muted)" font-size="12">approved</text>
 
-    return "max_steps_reached"
-```
+    <!-- D: tool surface -->
+    <rect x="185" y="386" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
+    <text x="300" y="408" text-anchor="middle" fill="var(--color-fg)" font-size="15">tool surface</text>
+    <text x="300" y="426" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">shell &#183; browser &#183; exploit &#183; api</text>
+    <line x1="300" y1="440" x2="300" y2="474" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
 
-Two things to notice. First, every meaningful action passes through
-`requires_approval`. Second, the loop does nothing clever &mdash; the value
-is in the *policy*, the *tool surface*, and the *audit trail*, not in the
-model.
+    <!-- E: audit log -->
+    <rect x="185" y="476" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
+    <text x="300" y="498" text-anchor="middle" fill="var(--color-fg)" font-size="15">audit log</text>
+    <text x="300" y="516" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">append-only</text>
+  </svg>
+  <figcaption style="text-align:center;font-family:'Consolas','Cascadia Code','SF Mono',ui-monospace,monospace;font-size:12px;color:var(--color-fg-dim);margin-top:0.5rem;">A deliberately boring loop. No autonomous exploitation; every step is gated and logged.</figcaption>
+</figure>
+
+Two things matter here, and neither of them is the model. First, every
+meaningful action has to clear an approval gate before it runs. Nothing touches a
+target without a human saying yes. Second, every step, approved or not, gets
+written to an append-only log you can read after the fact. The value isn't in
+some clever planner. It's in the policy, the small and deliberate set of tools
+you expose, and the paper trail. The model is the least interesting part of the
+system, and that's exactly how you want it.
 
 ## What this means for the program
 
-Agentic AI does not change the answer to the question "what is this team for?"
-The job is still: **prove how the organization would be breached, and prove
-that the defense would catch it.** Agents are a force multiplier on the
-unglamorous half of that job &mdash; the recon, the triage, the writing &mdash;
-and they are a liability on the half that requires judgment.
+None of this changes what the team is for. The job is still the same: prove how
+the organization actually gets breached, and prove the defense would catch it.
+Agents are a multiplier on the unglamorous half of that work, the recon, the
+triage, the writing. They're a liability on the half that needs judgment.
 
-Build for the first half. Be skeptical of anyone selling you the second.
+So build for the first half. And be very skeptical of anyone trying to sell you
+the second.
+</content>
