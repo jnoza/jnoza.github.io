@@ -89,10 +89,11 @@ coming back to looks like this:
     <text x="300" y="52" text-anchor="middle" fill="var(--color-fg)" font-size="15">goal + policy</text>
     <line x1="300" y1="74" x2="300" y2="108" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
     <rect x="185" y="110" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
-    <text x="300" y="142" text-anchor="middle" fill="var(--color-fg)" font-size="15">planner model</text>
+    <text x="300" y="134" text-anchor="middle" fill="var(--color-fg)" font-size="15">planner model</text>
+    <text x="300" y="152" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">proposes next step</text>
     <line x1="300" y1="164" x2="300" y2="188" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
     <polygon points="300,190 358,224 300,258 242,224" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
-    <text x="300" y="229" text-anchor="middle" fill="var(--color-fg)" font-size="14">plan.done?</text>
+    <text x="300" y="229" text-anchor="middle" fill="var(--color-fg)" font-size="14">goal met?</text>
     <line x1="358" y1="224" x2="462" y2="224" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
     <text x="404" y="214" text-anchor="middle" fill="var(--color-fg-muted)" font-size="12">yes</text>
     <rect x="466" y="197" width="134" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-accent-2)" stroke-width="1.5"/>
