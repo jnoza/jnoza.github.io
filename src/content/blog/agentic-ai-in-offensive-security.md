@@ -84,7 +84,7 @@ coming back to looks like this:
       </marker>
     </defs>
     <path d="M185,505 L110,505 L110,137 L185,137" fill="none" stroke="var(--color-accent)" stroke-width="1.5" marker-end="url(#ah-cy)"/>
-    <text x="103" y="321" transform="rotate(-90 103 321)" text-anchor="middle" fill="var(--color-accent)" font-size="11">result &#8594; context</text>
+    <text x="103" y="240" transform="rotate(-90 103 240)" text-anchor="middle" fill="var(--color-accent)" font-size="11">back to planner</text>
     <rect x="185" y="20" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-accent-2)" stroke-width="1.5"/>
     <text x="300" y="52" text-anchor="middle" fill="var(--color-fg)" font-size="15">goal + policy</text>
     <line x1="300" y1="74" x2="300" y2="108" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
@@ -104,6 +104,9 @@ coming back to looks like this:
     <text x="300" y="336" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">requires_approval</text>
     <line x1="300" y1="350" x2="300" y2="384" stroke="var(--color-fg-dim)" stroke-width="1.5" marker-end="url(#ah)"/>
     <text x="312" y="372" text-anchor="start" fill="var(--color-fg-muted)" font-size="12">approved</text>
+    <path d="M185,323 L110,323" fill="none" stroke="var(--color-accent)" stroke-width="1.5"/>
+    <circle cx="110" cy="323" r="3.5" fill="var(--color-accent)"/>
+    <text x="147" y="314" text-anchor="middle" fill="var(--color-fg-muted)" font-size="11">rejected</text>
     <rect x="185" y="386" width="230" height="54" rx="6" fill="var(--color-bg-soft)" stroke="var(--color-line)" stroke-width="1"/>
     <text x="300" y="408" text-anchor="middle" fill="var(--color-fg)" font-size="15">tool surface</text>
     <text x="300" y="426" text-anchor="middle" fill="var(--color-fg-dim)" font-size="11">shell &#183; browser &#183; exploit &#183; api</text>
@@ -117,7 +120,9 @@ coming back to looks like this:
 
 Two things matter here, and neither of them is the model. First, every
 meaningful action has to clear an approval gate before it runs. Nothing touches a
-target without a human saying yes. Second, every step, approved or not, gets
+target without a human saying yes. Reject a step and the run doesn't die; it goes
+back to the planner, which has to come up with something you'll actually approve.
+Second, every step, approved or not, gets
 written to an append-only log you can read after the fact. The value isn't in
 some clever planner. It's in the policy, the small and deliberate set of tools
 you expose, and the paper trail. The model is the least interesting part of the
