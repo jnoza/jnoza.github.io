@@ -6,6 +6,7 @@ const isActive = (href: string) =>
 const links = [
   { href: "/", label: "resume" },
   { href: "/blog", label: "blog" },
+  { href: "/Jose_A_Espinoza_Resume.pdf", label: "resume.pdf", download: true },
   { href: "https://github.com/jnoza", label: "github", external: true },
   { href: "https://www.linkedin.com/in/jose-espinoza-b8537470/", label: "linkedin", external: true },
 ];
@@ -22,6 +23,7 @@ const links = [
             href={l.href}
             target={l.external ? "_blank" : undefined}
             rel={l.external ? "noopener noreferrer" : undefined}
+            download={l.download ? "" : undefined}
             class={`px-2.5 py-1.5 rounded transition-colors hover:text-[var(--color-accent)] hover:bg-[var(--color-accent-soft)] ${
               !l.external && isActive(l.href)
                 ? "text-[var(--color-accent)]"
